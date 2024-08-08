@@ -1,26 +1,12 @@
-<div align="center" width="100%">
-    <h1>LinkedInDumper</h1>
-    <p>Python 3 script to dump company employees from LinkedIn API</p><p>
-    <a target="_blank" href="https://github.com/l4rm4nd"><img src="https://img.shields.io/badge/maintainer-LRVT-orange" /></a>
-    <a target="_blank" href="https://GitHub.com/l4rm4nd/LinkedInDumper/graphs/contributors/"><img src="https://img.shields.io/github/contributors/l4rm4nd/LinkedInDumper.svg" /></a>
-    <a target="_blank" href="https://github.com/PyCQA/bandit"><img src="https://img.shields.io/badge/security-bandit-yellow.svg"/></a><br>
-    <a target="_blank" href="https://GitHub.com/l4rm4nd/LinkedInDumper/commits/"><img src="https://img.shields.io/github/last-commit/l4rm4nd/LinkedInDumper.svg" /></a>
-    <a target="_blank" href="https://GitHub.com/l4rm4nd/LinkedInDumper/issues/"><img src="https://img.shields.io/github/issues/l4rm4nd/LinkedInDumper.svg" /></a>
-    <a target="_blank" href="https://github.com/l4rm4nd/LinkedInDumper/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/l4rm4nd/LinkedInDumper.svg" /></a><br>
-        <a target="_blank" href="https://github.com/l4rm4nd/LinkedInDumper/stargazers"><img src="https://img.shields.io/github/stars/l4rm4nd/LinkedInDumper.svg?style=social&label=Star" /></a>
-    <a target="_blank" href="https://github.com/l4rm4nd/LinkedInDumper/network/members"><img src="https://img.shields.io/github/forks/l4rm4nd/LinkedInDumper.svg?style=social&label=Fork" /></a>
-    <a target="_blank" href="https://github.com/l4rm4nd/LinkedInDumper/watchers"><img src="https://img.shields.io/github/watchers/l4rm4nd/LinkedInDumper.svg?style=social&label=Watch" /></a><br>
-    <a target="_blank" href="https://hub.docker.com/r/l4rm4nd/linkedindumper"><img src="https://badgen.net/badge/icon/l4rm4nd%2Flinkedindumper:latest?icon=docker&label" /></a><br><p>
-    <a href="https://www.buymeacoffee.com/LRVT" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-</div>
 
-## 💬 Description
+
+## Description
 
 LinkedInDumper is a Python 3 script that dumps employee data from the LinkedIn social networking platform.
 
 The results contain firstname, lastname, position (title), location and a user's profile link. Only 2 API calls are required to retrieve all employees if the company does not have more than 10 employees. Otherwise, we have to paginate through the API results. With the `--email-format` CLI flag one can define a Python string format to auto generate email addresses based on the retrieved first and last name.
 
-## ✨ Requirements
+## Requirements
 
 LinkedInDumper talks with the unofficial LinkedIn Voyager API, which requires authentication. Therefore, you must have a valid LinkedIn user account. To keep it simple, LinkedInDumper just expects a cookie value provided by you. Doing it this way, even 2FA protected accounts are supported. Furthermore, you are tasked to provide a LinkedIn company URL to dump employees from.
 
@@ -34,7 +20,7 @@ LinkedInDumper talks with the unofficial LinkedIn Voyager API, which requires au
 1. Search your target company on Google Search or directly on LinkedIn
 2. The LinkedIn company URL should look something like this: https://www.linkedin.com/company/apple
 
-## 🎓 Usage
+## Usage
 
 ````
 usage: linkedindumper.py [-h] --url <linkedin-url> [--cookie <cookie>] [--quiet] [--include-private-profiles] [--jitter] [--email-format EMAIL_FORMAT]
@@ -56,13 +42,13 @@ options:
                         --email-format '{0[0]}{1[0]}@example.com' --> jd@example.com
 ````
 
-### 🐳 Example 1 - Docker Run
+### Example 1 - Docker Run
 
 ````
 docker run --rm l4rm4nd/linkedindumper:latest --url 'https://www.linkedin.com/company/apple' --cookie '<cookie>' --email-format '{0}.{1}@apple.de'
 ````
 
-### 🐍 Example 2 - Native Python
+### Example 2 - Native Python
 
 ````
 # install dependencies
@@ -71,21 +57,9 @@ pip install -r requirements.txt
 python3 linkedindumper.py --url 'https://www.linkedin.com/company/apple' --cookie '<cookie>' --email-format '{0}.{1}@apple.de'
 ````
 
-## 💎 Outputs
+## Outputs
 
 The script will return employee data as semi-colon separated values (like CSV):
-
-````
- ██▓     ██▓ ███▄    █  ██ ▄█▀▓█████ ▓█████▄  ██▓ ███▄    █ ▓█████▄  █    ██  ███▄ ▄███▓ ██▓███  ▓█████  ██▀███  
-▓██▒    ▓██▒ ██ ▀█   █  ██▄█▒ ▓█   ▀ ▒██▀ ██▌▓██▒ ██ ▀█   █ ▒██▀ ██▌ ██  ▓██▒▓██▒▀█▀ ██▒▓██░  ██▒▓█   ▀ ▓██ ▒ ██▒
-▒██░    ▒██▒▓██  ▀█ ██▒▓███▄░ ▒███   ░██   █▌▒██▒▓██  ▀█ ██▒░██   █▌▓██  ▒██░▓██    ▓██░▓██░ ██▓▒▒███   ▓██ ░▄█ ▒
-▒██░    ░██░▓██▒  ▐▌██▒▓██ █▄ ▒▓█  ▄ ░▓█▄   ▌░██░▓██▒  ▐▌██▒░▓█▄   ▌▓▓█  ░██░▒██    ▒██ ▒██▄█▓▒ ▒▒▓█  ▄ ▒██▀▀█▄  
-░██████▒░██░▒██░   ▓██░▒██▒ █▄░▒████▒░▒████▓ ░██░▒██░   ▓██░░▒████▓ ▒▒█████▓ ▒██▒   ░██▒▒██▒ ░  ░░▒████▒░██▓ ▒██▒
-░ ▒░▓  ░░▓  ░ ▒░   ▒ ▒ ▒ ▒▒ ▓▒░░ ▒░ ░ ▒▒▓  ▒ ░▓  ░ ▒░   ▒ ▒  ▒▒▓  ▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░▒▓▒░ ░  ░░░ ▒░ ░░ ▒▓ ░▒▓░
-░ ░ ▒  ░ ▒ ░░ ░░   ░ ▒░░ ░▒ ▒░ ░ ░  ░ ░ ▒  ▒  ▒ ░░ ░░   ░ ▒░ ░ ▒  ▒ ░░▒░ ░ ░ ░  ░      ░░▒ ░      ░ ░  ░  ░▒ ░ ▒░
-  ░ ░    ▒ ░   ░   ░ ░ ░ ░░ ░    ░    ░ ░  ░  ▒ ░   ░   ░ ░  ░ ░  ░  ░░░ ░ ░ ░      ░   ░░          ░     ░░   ░ 
-    ░  ░ ░           ░ ░  ░      ░  ░   ░     ░           ░    ░       ░            ░               ░  ░   ░     
-                                      ░                      ░                                         ░ by LRVT      
 
 [i] Company Name: apple
 [i] Company X-ID: 162479
@@ -100,7 +74,7 @@ Raymond;Chen;raymond.chen@apple.de;Recruiting at Apple;N/A;Austin, Texas Metropo
 [i] Successfully crawled 2 unique apple employee(s). Hurray ^_-
 ````
 
-## 💥 Limitations
+## Limitations
 
 LinkedIn will allow only the first 1,000 search results to be returned when harvesting contact information. You may also need a LinkedIn premium account when you reached the maximum allowed queries for visiting profiles with your freemium LinkedIn account.
 
